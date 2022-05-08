@@ -13,7 +13,8 @@ namespace docxx
     {
         std::string file_path;  // full path include file name
         std::string media_name; // media name saved into `word\media` directory
-        MediaObject(std::string fp, std::string name) : file_path(std::move(fp)), media_name(std::move(name)) { }
+        MediaObject(std::string&& fp, std::string&& name) : file_path(std::move(fp)), media_name(std::move(name)) { }
+        MediaObject(const std::string& fp, const std::string& name) : file_path(fp), media_name(name) { }
     };
 
     // Store both the document and xml so that

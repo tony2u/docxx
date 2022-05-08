@@ -29,7 +29,7 @@ pugi::xml_document& Document::get_rels() const {
 void Document::open() {
     void *buf = nullptr;
     size_t buf_size = 0;
-
+    
     // Open file and load "xml" content to the document variable
     zip_t *zip = zip_open(this->doc_file.c_str(), ZIP_DEFAULT_COMPRESSION_LEVEL, 'r');
 
