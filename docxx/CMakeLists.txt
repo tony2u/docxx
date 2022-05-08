@@ -3,6 +3,6 @@ project(docxx)
 
 set(CMAKE_CXX_STANDARD 14)
 
-INCLUDE_DIRECTORIES(thirdparty/pugixml thirdparty/zip)
+include_directories(thirdparty/pugixml thirdparty/zip)
 
 add_library(docxx docxx.cpp utils.cpp thirdparty/pugixml/pugixml.cpp thirdparty/zip/zip.c)
