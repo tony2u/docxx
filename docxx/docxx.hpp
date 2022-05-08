@@ -154,7 +154,7 @@ namespace docxx
         std::vector<Table> _tables;
         std::vector<Paragraph> _paragraphs;
         std::vector<MediaObject> _medias;
-        //friend bool Run::add_picture(Document&, const char*, int, int, pugi::xml_document&, pugi::xml_document&);
+        //friend bool Run::add_picture(Document&, const char*, int, int);
     protected:
     public:
         Document() = default;
