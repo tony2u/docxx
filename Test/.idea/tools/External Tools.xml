@@ -1,0 +1,9 @@
+<toolSet name="External Tools">
+  <tool name="make run" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="C:\msys32\usr\bin\make.exe" />
+      <option name="PARAMETERS" value="-finput-charset=UTF-8" />
+      <option name="WORKING_DIRECTORY" value="E:/Temp/lawyer_cpp/Test" />
+    </exec>
+  </tool>
+</toolSet>
