@@ -131,6 +131,7 @@ void UTF8ToGB2312(const char* utf8, std::string& gb2312_str)
 //}
 void GB2312ToUTF8(const char* gb2312, std::string& utf8_str)
 {
+#ifdef _WIN32
     int len = MultiByteToWideChar(CP_ACP, 0, gb2312, -1, nullptr, 0);
     auto* wstr = new wchar_t[len + 1];
     memset(wstr, 0, len + 1);
@@ -142,4 +143,8 @@ void GB2312ToUTF8(const char* gb2312, std::string& utf8_str)
     delete[] wstr;
     utf8_str = str;
     delete[] str;
+#else
+    //TODO:
+    utf8_str = gb2312;
+#endif
 }

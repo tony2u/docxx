@@ -78,8 +78,8 @@ namespace docxx
         Run(const pugi::xml_node &parent, const pugi::xml_node &current) : DocElement(parent, current) {}
         ~Run() = default;
         void set_parent(const pugi::xml_node&) override;
-        bool add_text(const std::string&);
-        bool add_text(const char*);
+        bool add_text(const std::string&, bool);
+        bool add_text(const char*, bool);
         bool add_picture(Document&, const std::string&, int, int);
         bool add_picture(Document&, const char*, int, int);
         std::vector<Text>& texts();

@@ -237,27 +237,23 @@ std::vector<Picture>& Run::pictures() {
     }
     return _pictures;
 }
-bool Run::add_text(const std::string& text) {
-    return this->add_text(text.c_str());
+bool Run::add_text(const std::string& text, bool convUTF8) {
+    return this->add_text(text.c_str(), convUTF8);
 }
-bool Run::add_text(const char* text) {
-#ifdef _WIN32
+bool Run::add_text(const char* text, bool convUTF8) {
     std::string utf_str;
-    GB2312ToUTF8(text, utf_str);
+    if (convUTF8) {
+        GB2312ToUTF8(text, utf_str);
+    }
+    else {
+        utf_str = text;
+    }
     for (auto& it : this->get_current().children()) {
         if (std::string(it.name()) == "w:t") {
             return it.text().set(utf_str.c_str());
         }
     }
     return this->get_current().append_child("w:t").text().set(utf_str.c_str());
-#else
-    for (auto& it : this->get_current().children()) {
-        if (std::string(it.name()) == "w:t") {
-            return it.text().set(text);
-        }
-}    }
-    return this->get_current().append_child("w:t").text().set(text);
-#endif
 }
 bool Run::add_picture(Document& doc, const std::string& srcImg, int wd, int ht) {
     return this->add_picture(doc, srcImg.c_str(), wd, ht);
