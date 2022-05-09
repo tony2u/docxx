@@ -37,7 +37,7 @@ struct UserInfo
     std::string email;     //电子邮箱
     std::string leader;    //主管司法局
 };
-bool append_range_docx(const UserInfo& detail)
+bool append_range_docx(const UserInfo& detail, bool convUTF8)
 {
     Document doc("file.docx", true);
 
@@ -46,24 +46,24 @@ bool append_range_docx(const UserInfo& detail)
     auto tr = tbl.rows().back().append_row(false); //在最后一行之后 追加一行数据
     auto c1 = tr.cells()[0];
     auto n = std::to_string(tbl.rows().size());
-    c1.paragraphs().front().runs().front().add_text(n);
+    c1.paragraphs().front().runs().front().add_text(n, convUTF8);
     auto c2 = tr.cells()[1];
-    c2.paragraphs().front().runs().front().add_text(detail.name);
+    c2.paragraphs().front().runs().front().add_text(detail.name, convUTF8);
     auto c3 = tr.cells()[2];
-    c3.paragraphs().front().runs().front().add_text(detail.email);
+    c3.paragraphs().front().runs().front().add_text(detail.email, convUTF8);
     auto c4 = tr.cells()[3];
-    c4.paragraphs().front().runs().front().add_text(detail.unit);
+    c4.paragraphs().front().runs().front().add_text(detail.unit, convUTF8);
     auto c5 = tr.cells()[4];
-    c5.paragraphs().front().runs().front().add_text("");
+    c5.paragraphs().front().runs().front().add_text("", convUTF8);
     auto c6 = tr.cells()[5];
-    c6.paragraphs().front().runs().front().add_text(detail.ident);
+    c6.paragraphs().front().runs().front().add_text(detail.ident, convUTF8);
     char *stop_string = nullptr;
     auto wd = strtol(detail.imgWidth.c_str(), &stop_string, 10);
     auto ht = strtol(detail.imgHeight.c_str(), &stop_string, 10);
     auto c7 = tr.cells()[6];
     c7.paragraphs().front().runs().front().add_picture(doc, detail.imgSrc, wd, ht);
 
-    cout << "Saving..." << endl;
+    cout << "保存..." << endl;
     return doc.save();
 }
 void test2()
@@ -76,7 +76,7 @@ void test2()
     detail.imgWidth = "110";
     detail.imgHeight = "140";
     detail.imgSrc = R"(E:\Temp\lawyer_cpp\Test\view.png)";
-    append_range_docx(detail);
+    append_range_docx(detail, true);
 }
 
 int main()
